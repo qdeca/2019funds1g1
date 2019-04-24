@@ -5,6 +5,25 @@ public class SavingsAccount {
 	private double monthlyInterestRate;
 	private double balance;
 	
+	
+	
+	
+	public SavingsAccount() {
+	}
+	
+	
+
+	public SavingsAccount(double balance) {
+		this.balance = balance;
+	}
+
+
+
+	public SavingsAccount(double monthlyInterestRate, double balance) {
+		this.monthlyInterestRate = monthlyInterestRate;
+		this.balance = balance;
+	}
+
 	public double computeYearlyInterest() {
 
 		double yearlyInterestRate = this.monthlyInterestRate * 12;
