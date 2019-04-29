@@ -2,7 +2,7 @@ package com.epita.entities;
 
 public class Account {
 
-	double balance;
+	protected double balance;
 	
 	void createAccount() {
 		

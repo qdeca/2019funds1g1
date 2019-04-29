@@ -1,9 +1,9 @@
 package com.epita.entities;
 
-public class SavingsAccount {
+public class SavingsAccount extends Account {
 
 	private double monthlyInterestRate;
-	private double balance;
+
 	
 	
 	
@@ -34,6 +34,14 @@ public class SavingsAccount {
 	}
 	
 	public double withdraw(double amount) {
+		int balance = 50;
+		switch (balance) {
+		case 50 : System.out.println("you have 50€");
+					break;
+		case 100 : System.out.println("you have 100€");
+					break;
+		default : System.out.println("amount of money not known");
+		}
 		//this.balance = this.balance - amount;
 		this.balance -= amount;
 		// assign balance minus amount to balance
