@@ -1,11 +1,20 @@
 package com.epita.main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LoginMain {
 	
-	public static final String VALID_USERNAME = "admin";
-	public static final String VALID_PASSWORD = "password";
+	private static final String VALID_USERNAME = "admin";
+	private static final String VALID_PASSWORD = "password";
+	private static final int CREATE_OPTION = 1;
+	private static final int UPDATE_OPTION = 2;
+	private static final int DELETE_OPTION = 3;
+	private static final int CONTINUE_OPTION = 1;
+	private static final int STOP_OPTION = 2;
+
+
+	
 
 	public static void main(String[] args) {
 		
@@ -15,18 +24,61 @@ public class LoginMain {
 		String username = scanner.nextLine();
 		System.out.println("Please enter your password : ");
 		String password = scanner.nextLine();
-		if (VALID_USERNAME.equals(username) 
-				&& VALID_PASSWORD.equals(password)) {
-		// && represents the logical AND
-		// || represents the logical OR
-		// ! represents the logical NOT
-		// comparable to if (VALID_USERNAME== username) {
+		if (login(username, password)) {
 			System.out.println("You're connected");
+			boolean continueProgram = true;
+			while (continueProgram) {
+				continueProgram = navigateInProgram(scanner);
+			}
+			
 		} else {
 			System.out.println("Wrong username or password");
 		}
 		scanner.close();
 		
+	}
+
+	private static boolean login(String username, String password) {
+		return (VALID_USERNAME.equals(username) 
+				&& VALID_PASSWORD.equals(password));
+	}
+
+
+
+	private static boolean navigateInProgram(Scanner scanner) {
+		try {
+			boolean continueProgram = true;
+			System.out.println("Press 1 to create, 2 to update and 3 to delete : ");
+			int option = scanner.nextInt();
+			switch (option) {
+			case CREATE_OPTION 	: 
+				System.out.println("You have succesfully created an object");
+				break;
+			case UPDATE_OPTION 	: 
+				System.out.println("You have succesfully updated an object");
+				break;
+			case DELETE_OPTION 	: 
+				System.out.println("You have succesfully deleted an object");
+				break;
+			default				:
+				System.out.println("Bad input entered");
+			}
+			System.out.println("Press 1 to continue or 2 to stop");
+			option = scanner.nextInt();
+			if (CONTINUE_OPTION == option) {
+				System.out.println("Let's try this again");
+			} else if (STOP_OPTION == option) {
+				System.out.println("Exiting program");
+				continueProgram = false;
+			} else {
+				System.out.println("Bad input entered, exiting program");
+				continueProgram = false;
+			}
+			return continueProgram;
+		} catch(InputMismatchException e) {
+			System.out.println("Bad input entered : " + e.getMessage());
+		}
+		return false;
 	}
 	
 }
