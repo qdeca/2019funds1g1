@@ -49,20 +49,49 @@ public class LoopMain {
 	}
 	
 	public static void main(String[] args) {
-		
+		System.out.println(factorial(5));
+		System.out.println(secondFactorial(5));
+		System.out.println(thirdFactorial(5));
+		System.out.println(fourthFactorial(5));
 		
 		
 	}
 	
-	public int factorial(int number) {
-		// implement
+	public static int factorial(int number) { // while loop
+		if (number == 0 || number == 1) return 1;
+
+		int result = number;
+		while(number > 1) {
+			number--;
+			result *= number;
+		}
+		return result;
 	}
-	public int secondFactorial(int number) {
-		// implement
+	public static int secondFactorial(int number) { // do while loop
+		if (number == 0 || number == 1) return 1;
+		int result = number;
+		do {
+			number--;
+			result *= number;
+		} while (number > 1);
+		
+		return result;
 	}
-	public int thirdFactorial(int number) {
-		// implement
+	public static int thirdFactorial(int number) { // for loop
+		if (number == 0 || number == 1) return 1;
+		int result = 1;
+		for (int i= number; i> 1;i--) {
+			result *= i;
+		}
+		return result;
 	}
-	
+	public static int fourthFactorial(int number) { // recursive method
+		if (number == 0 || number == 1) {
+			return 1;
+		} else {
+			return (number * fourthFactorial(number-1)); // we call our method 
+													// but change the parameter each time
+		}
+	}
 	
 }
