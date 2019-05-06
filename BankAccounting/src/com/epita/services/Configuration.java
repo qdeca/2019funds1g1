@@ -11,7 +11,9 @@ public class Configuration {
 
 	private Properties properties;
 	
-	public Configuration() {
+	private static Configuration configuration;
+	
+	private Configuration() {
 		properties = new Properties();
 		try {
 			InputStream input = new FileInputStream("config.properties");
@@ -21,6 +23,13 @@ public class Configuration {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+	}
+	
+	public static Configuration getInstance() {
+		if (configuration == null) {
+			configuration = new Configuration();
+		} 
+		return configuration;
 	}
 	
 	public String getPropertyValue(String key) {
