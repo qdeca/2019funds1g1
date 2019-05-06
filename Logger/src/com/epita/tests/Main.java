@@ -2,6 +2,9 @@ package com.epita.tests;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -14,9 +17,14 @@ public class Main {
 		SimpleDateFormat sdf = new SimpleDateFormat(wantedDateFormat);
 		String userInput = scanner.nextLine();
 		// how to check that the userInput is of the right format ?
+		if (userInput.length() < 10) {
+			System.out.println("Incorrect format given.");
+			return;
+		}
 		String yearInput = userInput.substring(0, 4);
 		String monthInput = userInput.substring(5, 7);
 		String dayInput = userInput.substring(8, 10);
+		
 
 		try {
 			
@@ -37,6 +45,17 @@ public class Main {
 			
 		}
 		
+		Date date = new Date(); // classic java Date, hard to manipulate
+		Calendar calendar = Calendar.getInstance(); // old way to manipulate a Date in java
+		calendar.setTime(date);
+		calendar.set(2018, 05, 05);
+		
+		
+		// new way since Java 1.8 to manipulate Dates
+		LocalDate localDate = LocalDate.now(); // equivalent to new Date()
+		localDate.atStartOfDay(ZoneId.systemDefault());
+		LocalDate beforeDate = localDate.minusMonths(3);
+		System.out.println(beforeDate);
 
 	}
 }
