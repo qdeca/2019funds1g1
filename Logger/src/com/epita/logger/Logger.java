@@ -5,13 +5,24 @@ import java.util.Date;
 
 public class Logger {
 	
-	
+	private String className;
 
-	public static void log(String message, LoggingLevel logLevel) {
+	public Logger(String className) {
+		this.className = className;
+	}
+	
+	public void log(String methodName, String message, LoggingLevel logLevel) {
 		Date date = new Date();
 		StringBuilder log = new StringBuilder();
 		SimpleDateFormat sdf = new SimpleDateFormat(DateFormatting.LOGGING_FORMAT);
+		log.append(className);
+		log.append(" - ");
+		log.append(methodName);
+		log.append(" - ");
 		log.append(sdf.format(date));
+		
+		// how to add method log was called from 
+		
 		switch (logLevel) {
 		case DEBUG : 
 			log.append(" - DEBUG - ");

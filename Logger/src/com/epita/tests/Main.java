@@ -8,12 +8,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.epita.logger.Logger;
+import com.epita.logger.LoggingLevel;
+
 public class Main {
 
+	
+	
 	public static void main(String[] args) {
+		Logger log = new Logger("Main");
 		String wantedDateFormat = "yyyy/MM/dd";
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter a date of the following format : " + wantedDateFormat);
+		log.log("main", "Please enter a date of the following format : " + wantedDateFormat, LoggingLevel.INFO);
 		SimpleDateFormat sdf = new SimpleDateFormat(wantedDateFormat);
 		String userInput = scanner.nextLine();
 		// how to check that the userInput is of the right format ?
