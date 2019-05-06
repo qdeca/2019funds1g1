@@ -9,26 +9,28 @@ public class Logger {
 
 	public static void log(String message, LoggingLevel logLevel) {
 		Date date = new Date();
+		StringBuilder log = new StringBuilder();
 		SimpleDateFormat sdf = new SimpleDateFormat(DateFormatting.LOGGING_FORMAT);
+		log.append(sdf.format(date));
 		switch (logLevel) {
 		case DEBUG : 
-			System.out.println(sdf.format(date) + " - DEBUG - " + message);
+			log.append(" - DEBUG - ");
 			break;
 		case INFO : 
-			System.out.println(sdf.format(date) + "INFO - " + message);
+			log.append(" - INFO - ");
 			break;
 		case WARNING : 
-			System.out.println(sdf.format(date) + "WARNING - " + message);
+			log.append(" - WARNING - ");
 			break;
 		case ERROR : 
-			System.out.println(sdf.format(date) + "ERROR - " + message);
+			log.append(" - ERROR - ");
 			break;
 		case FATAL : 
-			System.out.println(sdf.format(date) + "FATAL - " + message);
+			log.append(" - FATAL - ");
 			break;
 		
-		
 		}
-
+		log.append(message);
+		System.out.println(log.toString());
 	}
 }
