@@ -13,7 +13,7 @@ public class Configuration {
 	
 	private static Configuration configuration;
 	
-	private Configuration() {
+	private Configuration() { // private constructor so it will only be instanciated once
 		properties = new Properties();
 		try {
 			InputStream input = new FileInputStream("config.properties");
@@ -32,7 +32,8 @@ public class Configuration {
 		return configuration;
 	}
 	
-	public String getPropertyValue(String key) {
+	public String getPropertyValue(String key) { // access the value of a given key 
+												// in the properties file
 		return properties.getProperty(key);
 	}
 	

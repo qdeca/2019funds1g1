@@ -3,10 +3,13 @@ package com.epita.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.epita.services.Configuration;
+
 public class LoginMain {
 	
-	private static final String VALID_USERNAME = "admin";
-	private static final String VALID_PASSWORD = "password";
+
+	private static final String LOGIN_PASSWORD = "login.password";
+	private static final String LOGIN_USERNAME = "login.username";
 	private static final int CREATE_OPTION = 1;
 	private static final int UPDATE_OPTION = 2;
 	private static final int DELETE_OPTION = 3;
@@ -17,6 +20,7 @@ public class LoginMain {
 	
 
 	public static void main(String[] args) {
+		
 		
 		Scanner scanner = new Scanner(System.in);
 		// create a login functionality with username and password
@@ -39,8 +43,18 @@ public class LoginMain {
 	}
 
 	private static boolean login(String username, String password) {
-		return (VALID_USERNAME.equals(username) 
-				&& VALID_PASSWORD.equals(password));
+		Configuration config = Configuration.getInstance();
+		String validUsername = config.getPropertyValue(LOGIN_USERNAME);
+		String validPassword = config.getPropertyValue(LOGIN_PASSWORD);
+		if (validUsername == null)  {
+			System.out.println("no login in config file");
+			return false;
+		} else if (validPassword == null) {
+			System.out.println("no password in config file");
+			return false;
+		}
+		return (validUsername.equals(username) 
+				&& validPassword.equals(password));
 	}
 
 
