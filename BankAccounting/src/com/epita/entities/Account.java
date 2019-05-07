@@ -1,7 +1,7 @@
 package com.epita.entities;
 
-public class Account {
-
+public abstract class Account {
+	
 	protected double balance;
 	
 	void createAccount() {

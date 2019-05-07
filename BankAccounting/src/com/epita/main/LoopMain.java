@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,7 +23,8 @@ public class LoopMain {
 			String season = seasons[i];
 			System.out.println(season);
 		}
-			
+		
+		List<Integer> integerList = new LinkedList<>();
 		List<String> seasonList = new ArrayList<>();
 		// ordered collection, allows duplicates
 		Set<String> seasonSet = new HashSet<>();

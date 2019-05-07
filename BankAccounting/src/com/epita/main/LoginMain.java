@@ -28,8 +28,10 @@ public class LoginMain {
 		String username = scanner.nextLine();
 		System.out.println("Please enter your password : ");
 		String password = scanner.nextLine();
+
 		if (login(username, password)) {
 			System.out.println("You're connected");
+			//TODO put in log file instead
 			boolean continueProgram = true;
 			while (continueProgram) {
 				continueProgram = navigateInProgram(scanner);
@@ -37,6 +39,7 @@ public class LoginMain {
 			
 		} else {
 			System.out.println("Wrong username or password");
+			//TODO put in log file instead
 		}
 		scanner.close();
 		
@@ -59,7 +62,7 @@ public class LoginMain {
 
 
 
-	private static boolean navigateInProgram(Scanner scanner) {
+	private static boolean navigateInProgram(Scanner scanner)  {
 		try {
 			boolean continueProgram = true;
 			System.out.println("Press 1 to create, 2 to update and 3 to delete : ");

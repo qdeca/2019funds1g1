@@ -3,6 +3,8 @@ package com.epita.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.epita.entities.Account;
+import com.epita.entities.InvestmentAccount;
 import com.epita.entities.SavingsAccount;
 import com.epita.services.Computing;
 
@@ -23,7 +25,9 @@ public class Main {
 	
 		Scanner scanner = new Scanner(System.in);
 		try { //this is a try-catch block, we will discuss it further
-		    SavingsAccount account = new SavingsAccount(); // step 1
+		    Account randomAccount;
+			SavingsAccount account = new SavingsAccount(); // step 1
+			Account invAccount = new InvestmentAccount();
 			account.setBalance(500); // step 2
 			//SavingsAccount account = new SavingsAccount(500); // alternate steps 1 & 2
 			System.out.println("Please enter amount to withdraw from your account");

@@ -8,4 +8,8 @@ public class Square extends Rectangle implements Shape {
 		super(side, side);
 	}
 
+
+
+	
+	
 }
