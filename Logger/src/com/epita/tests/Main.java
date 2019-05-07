@@ -8,7 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.epita.logger.Logger;
+import com.epita.logger.FileLogger;
 import com.epita.logger.LoggingLevel;
 
 public class Main {
@@ -16,12 +16,17 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		Logger log = new Logger("Main");
+		FileLogger log = new FileLogger();
 		String wantedDateFormat = "yyyy/MM/dd";
 		Scanner scanner = new Scanner(System.in);
-		log.log("main", "Please enter a date of the following format : " + wantedDateFormat, LoggingLevel.INFO);
+		System.out.println("Please enter a date of the following format : " + wantedDateFormat);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat(wantedDateFormat);
 		String userInput = scanner.nextLine();
+		log.log("main", "entered date : " + userInput, LoggingLevel.INFO);
+		
+		
+		
 		// how to check that the userInput is of the right format ?
 		if (userInput.length() < 10) {
 			System.out.println("Incorrect format given.");
