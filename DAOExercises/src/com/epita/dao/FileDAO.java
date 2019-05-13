@@ -2,6 +2,7 @@ package com.epita.dao;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
@@ -32,9 +33,11 @@ public class FileDAO {
 					return user; // if so, return the user
 				}
 			}
+		} catch( NoSuchFileException nsfe) {
+			System.out.println("Create a file first ! ");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		return null;  // otherwise, return null
 	}
 	
@@ -77,7 +80,11 @@ public class FileDAO {
 	}
 	
 	
-
-	// update
+	public void updateAdress(User userToUpdate) { // changes adress of given user to new adress present in userToUpdate
+		deleteUser(userToUpdate); // delete the user with old information
+		createUser(userToUpdate); // create the user wirth updated information
+	}
+	
+	
 
 }
