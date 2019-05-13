@@ -60,13 +60,13 @@ public class FileDAO {
 		List<String> userList;
 		try {
 			userList = Files.readAllLines(Paths.get(USERS_FILENAME));// get all users from the file
+			int index = -1;
 			for (String user : userList) { // for each user
-				int index = userList.indexOf(user);
 				if (user.contains(userToDelete.getName())) { // see if the name matches the one in parameter
-					 userList.remove(index); // if so, delete it from the list
+					  index = userList.indexOf(user);
 				}
 			}
-			
+			if (index >= 0) userList.remove(index);
 			// recreate the file by deleting it then recreating it with the same list minus the deleted user
 			Files.delete(Paths.get(USERS_FILENAME));
 			for (String user : userList) {
@@ -80,7 +80,7 @@ public class FileDAO {
 	}
 	
 	
-	public void updateAdress(User userToUpdate) { // changes adress of given user to new adress present in userToUpdate
+	public void updateUser(User userToUpdate) { // changes characteristics of given user to new adress present in userToUpdate
 		deleteUser(userToUpdate); // delete the user with old information
 		createUser(userToUpdate); // create the user wirth updated information
 	}
