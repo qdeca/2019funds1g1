@@ -29,6 +29,12 @@ public class FileXMLDAOMain {
 				Element element = (Element ) listOfNames.item(i);
 				System.out.println(element.getTextContent());
 			}
+			
+			NodeList listUser= rootElement.getElementsByTagName("user");
+			for (int i=0; i<listUser.getLength(); i++) {
+				Element user = (Element) listUser.item(i);
+				System.out.println(user.getAttribute("id"));
+			}
 
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
