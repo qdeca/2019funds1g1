@@ -1,0 +1,14 @@
+<users> 
+	<user id='7'> <!--  id is an Attribute -->
+		<name>Bob</name><!--  the whole line is an Element -->
+		<height>1.78</height><!-- 1.78 is a text content of an element -->
+		<adress>2 rue de la paix</adress>
+		<birthdate>02/02/1968</birthdate>
+	</user>
+	<user id='89'>
+		<name>Smith</name>
+		<height>1.82</height>
+		<adress>22 rue des lilas</adress>
+		<birthdate>02/03/1987</birthdate>
+	</user>
+</users>
