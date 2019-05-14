@@ -6,6 +6,11 @@ import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,6 +33,57 @@ public class FileXMLDAO {
 		}
 		return null; //BAD PRACTICE
 	}
+	
+	
+	public void transformXmlDocument(Document doc) {
+		try {
+			TransformerFactory tf = TransformerFactory.newInstance(); 
+			Transformer transformer = tf.newTransformer();
+			transformer.transform(new DOMSource(doc), new StreamResult(XML_FILE)); // updates the xml file
+																			// according to the document java object
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	public void createNewUser(User user) {
+		Document doc = initXmlDocument(); // contains all data pertaining to xml file
+		Element rootElement = doc.getDocumentElement(); 
+		
+		Element newUserElement = doc.createElement("user"); // create new user element
+		
+		Element newNameElement = doc.createElement("name"); // create element for each attribute
+		newNameElement.setTextContent(user.getName()); // set value equals to that of the parameter
+		
+		Element newHeightElement = doc.createElement("height");
+		newHeightElement.setTextContent(String.valueOf(user.getHeight()));
+		
+		Element newAdressElement = doc.createElement("adress");
+		newAdressElement.setTextContent(user.getAdress());
+		
+		Element newBirthDateElement = doc.createElement("birthdate");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		newBirthDateElement.setTextContent(sdf.format(user.getBirthdate()));
+		
+		
+		// rearrange elements in xml file : all the attributes under the new user
+		// and the new user under the root element
+		newUserElement.appendChild(newNameElement);
+		newUserElement.appendChild(newHeightElement);
+		newUserElement.appendChild(newAdressElement);
+		newUserElement.appendChild(newBirthDateElement);
+		rootElement.appendChild(newUserElement);
+		
+		transformXmlDocument(doc); // invoke a method to update xml file with new java document object
+
+		
+	}
+	
+	
+	
 	
 	public User searchForUserByName(String name) {
 		try {
