@@ -51,9 +51,9 @@ public class FileXMLDAOMain {
 //				e.printStackTrace();
 //			}
 			
-			User user = new User("Testname", 1.74, "Testadress", new Date());
+			User user = new User("Testname", 1.74, "5 rue de la boustifaille", new Date());
 			FileXMLDAO xmlDAO = new FileXMLDAO();
-			xmlDAO.createNewUser(user);
+			xmlDAO.updateUser(user);
 
 //		} catch (SAXException | IOException e) {
 //			e.printStackTrace();
