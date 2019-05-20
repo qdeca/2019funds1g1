@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.epita.geometry.entities.Circle;
+import com.epita.geometry.entities.Quadrilateral;
 import com.epita.geometry.entities.Rectangle;
 
 public class Main {
@@ -38,8 +39,8 @@ public class Main {
 				System.out.println("This rectangle is not a square");
 			}
 			
-			
-			
+			Quadrilateral quadr = new Rectangle(5, 6);
+			// case where an instance is not the same type as the declaration of an object
 		} catch(InputMismatchException e) {
 			System.out.println("Please type a valid number");
 		} 
