@@ -51,12 +51,45 @@ public class DAOMain {
 			statement.setString(3, "NewMail"); // third parameter is the value NewMail
 			statement.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("An exception occured while attempting to add a user : " + e.getMessage());
 		}
 		
 	}
 	
 	private static void updateUser() {
-		// UPDATE USER SET NAME = ? WHERE ID = ?
+		int idToModify = 5;
+		String nameToModify = "Durand";
+
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", "");
+			PreparedStatement statement = connection.prepareStatement("UPDATE USER SET NAME=? WHERE ID= ?");
+			statement.setString(1, nameToModify);
+			statement.setInt(2, idToModify);
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println("An exception occured while attempting to update a user : " + e.getMessage());
+		}
 	}
+	
+	private static void deleteUser() {
+		int idToDelete = 5;
+		try {
+			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", "");
+			PreparedStatement statement = connection.prepareStatement("DELETE FROM USER WHERE ID = ?");
+			statement.setInt(1, idToDelete);
+			statement.execute();
+		} catch (SQLException e) {
+			System.out.println("An exception occured while attempting to delete a user : " + e.getMessage());
+		}
+	}
+	
+	
+	// TODO search users by mail
+	// return a list of ids
+	
+	
+	
+	
+	
+	
 }
