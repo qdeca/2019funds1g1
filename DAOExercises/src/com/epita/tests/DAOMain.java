@@ -55,4 +55,8 @@ public class DAOMain {
 		}
 		
 	}
+	
+	private static void updateUser() {
+		// UPDATE USER SET NAME = ? WHERE ID = ?
+	}
 }
