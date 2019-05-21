@@ -5,17 +5,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAOMain {
 	
 	public static void main(String[] args) {
-		//readUsers();
-		createUser();
-		
-		// TO READ   : SELECT
-		// TO CREATE : INSERT INTO
-		// TO DELETE : DELETE FROM
-		// TO UPDATE : UPDATE 
+		//
+//createUser();
+//		readUsers();
+		for (int id : searchUsersByMail("NewMail")) {
+			System.out.println(id);
+		}
+
 	}
 
 	private static void readUsers() {
@@ -25,7 +27,7 @@ public class DAOMain {
 			// INSERT INTO USER VALUES (1, 'Testname', 'Testmail')
 			
 			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", "");
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER WHERE ID=1");
+			PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER");
 			ResultSet result = statement.executeQuery();
 
 			while(result.next()) {  // for all users in database
@@ -46,7 +48,7 @@ public class DAOMain {
 		try {
 			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", "");
 			PreparedStatement statement = connection.prepareStatement("INSERT INTO USER VALUES(?,?,?)"); // ? are parameters
-			statement.setInt(1, 5); // first parameter is the value 5
+			statement.setInt(1, 7); // first parameter is the value 5
 			statement.setString(2, "NewName"); // second parameter is the value NewName
 			statement.setString(3, "NewMail"); // third parameter is the value NewMail
 			statement.execute();
@@ -85,7 +87,32 @@ public class DAOMain {
 	
 	
 	// TODO search users by mail
+	// use SELECT instruction
 	// return a list of ids
+	private static List<Integer> searchUsersByMail(String email) {
+		List<Integer> listResults = new ArrayList<>();
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", ""); // establish connectio,
+			PreparedStatement statement = connection.prepareStatement("SELECT ID FROM USER WHERE EMAIL=?"); // set up SQL instruction
+			statement.setString(1, email); // add parameter to the instruction
+			ResultSet result = statement.executeQuery(); // execute the query
+			while(result.next()) {  // for all users in database matching the email
+				int id = result.getInt(1); // get id 
+				listResults.add(id);
+			}
+		} catch(SQLException e) {
+			System.out.println("An exception occured while attempting to search the database : " + e.getMessage());
+		}
+		return listResults;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
