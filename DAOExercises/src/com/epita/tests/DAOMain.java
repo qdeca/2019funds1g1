@@ -6,17 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import com.epita.dao.UserDAO;
+import com.epita.entities.User;
 
 public class DAOMain {
 	
 	public static void main(String[] args) {
+		UserDAO dao = new UserDAO();
+		User user = new User("Bob", 169, "1 rue de la paix", new Date());
+		dao.createUser(user);
 		//
 //createUser();
 //		readUsers();
-		for (int id : searchUsersByMail("NewMail")) {
-			System.out.println(id);
-		}
+//		for (int id : searchUsersByMail("NewMail")) {
+//			System.out.println(id);
+//		}
 
 	}
 
