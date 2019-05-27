@@ -31,12 +31,13 @@ public class UserDAO {
 		try {
 			//Connection connection = initConnection();
 			Connection connection = DriverManager.getConnection("jdbc:h2:C:/Formation2019/db/h2DS", "sa", "");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 			PreparedStatement statement = connection.prepareStatement("INSERT INTO USER(NAME, HEIGHT, ADRESS, BIRTHDATE) VALUES(?,?,?,?)");
 			statement.setString(1, user.getName());
 			statement.setDouble(2, user.getHeight());
 			statement.setString(3, user.getAdress());
-			statement.setString(4, user.getBirthdate()+"");
+			statement.setString(4, sdf.format(user.getBirthdate()));
 			statement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +53,7 @@ public class UserDAO {
 			PreparedStatement statement = connection.prepareStatement("SELECT * FROM USER WHERE NAME = ?");
 			statement.setString(1, username);
 			ResultSet result = statement.executeQuery();
-			SimpleDateFormat sdf = new SimpleDateFormat();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			while(result.next()) {  // for all users in database
 				int id = result.getInt(1); // get id (first column)
 				String name = result.getString(2); // get name (second column)
